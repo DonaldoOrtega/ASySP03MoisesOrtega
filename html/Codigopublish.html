@@ -1,0 +1,241 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Pr&aacute;ctica 3: Se&ntilde;ales en tiempo discreto</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-04-15"><meta name="DC.source" content="Codigopublish.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Pr&aacute;ctica 3: Se&ntilde;ales en tiempo discreto</h1><!--introduction--><p>Integrantes del equipo: Ortega Gonz&aacute;lez Mois&eacute;s Donaldo,Ortiz Colin Cesar Antonio, Zarate Murillo Jose Antonio</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introducci&oacute;n</a></li><li><a href="#2">ESCALONAMIENTO HORIZONTAL DE SE&Ntilde;ALES EN TIEMPO DISCRETO.</a></li><li><a href="#3">* Compresi&oacute;n horizontal de una se&ntilde;al en tiempo discreto</a></li><li><a href="#4">* Expansi&oacute;n horizontal de una se&ntilde;al en tiempo discreto.</a></li><li><a href="#5">*  Interpolaci&oacute;n.</a></li><li><a href="#6">Desarrollo</a></li><li><a href="#7">* Problema 1</a></li><li><a href="#8">* Problema 2</a></li><li><a href="#9">* Problema 3</a></li><li><a href="#14">* Problema 4</a></li><li><a href="#15">* Problema 5</a></li><li><a href="#17">* Problema 6</a></li><li><a href="#19">Referencias</a></li></ul></div><h2 id="1">Introducci&oacute;n</h2><h2 id="2">ESCALONAMIENTO HORIZONTAL DE SE&Ntilde;ALES EN TIEMPO DISCRETO.</h2><h2 id="3">* Compresi&oacute;n horizontal de una se&ntilde;al en tiempo discreto</h2><p>Al comprimir una se&ntilde;al x[n]con un factor b (el cu&aacute;l se limita a numeros enteros) y <img src="Codigopublish_eq13200201073216361571.png" alt="$n=[-8:8]$"> tenemos que para todos lo valores de n x[bn]=...,x[-2b],x[-b],x[0],x[b],x[2b],... entonces la nueva funci&oacute;n solo considera entradas que sean m&uacute;ltiplos de b.Esta operaci&oacute;n reduce el n&uacute;mero de alturas de la funci&oacute;n original con un factor b, es por esto que se le llama "submustreo" de la se&ntilde;al.</p><h2 id="4">* Expansi&oacute;n horizontal de una se&ntilde;al en tiempo discreto.</h2><p>Al expandir una se&ntilde;al x[n] con un factor 1/l donde l se limita a numeros enteros, y si <img src="Codigopublish_eq16636830285926246714.png" alt="$n=[-10,10]$"> tenemos que para todos los valores de n <img src="Codigopublish_eq02961909332217998427.png" alt="$x[n/l]=...,x[-2/l],x[-1/l],x[0],x[1/l],x[2/l]$">,... si suponemos un l=2, encontramos que tendremos n&uacute;meros enteros en la entrada de la se&ntilde;al para <img src="Codigopublish_eq05055169771470609569.png" alt="$n={-8,-6,-4,-2,0,2,4,6,8}$">, y por tratarse de una se&ntilde;al en tiempo discreto decimos que para el resto de valores de n no hay una altura definida.</p><h2 id="5">*  Interpolaci&oacute;n.</h2><p>Una vez que tenemos una expansi&oacute;n de una se&ntilde;al en tiempo discreto, gr&aacute;ficamente podemos notar todos los "huecos" de alturas en los valores impares de n, para evitar este fen&oacute;meno, se hace la interpolaci&oacute;n, que consiste en "rellenar" dichos huecos asignandoles alturas haciendo el promedio del primer valor que se encuentra a su derecha e izquierda. De forma que si la se&ntilde;al original tiene un n&uacute;mero n de alturas, la se&ntilde;al interpolada tendr&aacute; l*n, por esto, la operaci&oacute;n de interpolaci&oacute;n tambi&eacute;n se conoce como sobremuestreo. nota: cabe se&ntilde;alar que al expandir horizontalmente una funci&oacute;n con el comando stem, Matlab realiza autom&aacute;ticamente la interpolaci&oacute;n.</p><pre class="codeinput">intro
+</pre><pre class="codeoutput">A continuacion se muestran unos ejemplos
+</pre><img vspace="5" hspace="5" src="Codigopublish_01.png" alt=""> <h2 id="6">Desarrollo</h2><h2 id="7">* Problema 1</h2><p>Para La solucion al problema 1 basto con elaborar el siguiente codigo</p><pre class="language-matlab"><span class="keyword">function</span> r=fun1(r,o,n)
+<span class="comment">%n es un vector el cual debe introducirse por ejemplo de la siguiente manera n=1:10</span>
+y=(r.^n.*cos(n.*o)+(r.^n.*sin(n.*o)*j));
+r=real(y)+imag(y)*j;
+<span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p>Para fines de mostrar los resultados de fun1 de una forma estetica y ordenada se puede ejecutar el siguiente codigo que en esencia es fun1</p><pre class="language-matlab"><span class="keyword">function</span> fun1d(r,o,n1,n2 )<span class="comment">%o hace referencia a omega</span>
+<span class="comment">%el vector n debe introducirse como un valor inicial(n1) y un valor final n2</span>
+fprintf(<span class="string">'%6s %12s %15s\n'</span>,<span class="string">'n'</span>,<span class="string">'real y[n]'</span>,<span class="string">'imaginario y[n]'</span>)
+<span class="comment">%el vector n(numero de evaluaciones) se conforma con los valores introducidos y va de 1 en 1</span>
+<span class="keyword">for</span> n=n1:n2;<span class="comment">%es para que recorra del valor inicial y valor final</span>
+y=(r.^n.*cos(n.*o)+(r.^n.*sin(n.*o)*j));
+fprintf(<span class="string">'%6.2d %12.5f %15.5f\n'</span>,n,real(y),imag(y))
+<span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><h2 id="8">* Problema 2</h2><p>A continuacion la solucion del problema 2</p><pre class="codeinput">n=-2:10;<span class="comment">% vector especificado</span>
+<span class="comment">% se declara la funcion como anonima</span>
+x =@(n) n.*0.9.^n.*(n&gt;=0);
+<span class="comment">% se manda a llamar a la funcion que grafica , la cual fue previamente</span>
+<span class="comment">% creada</span>
+Mifigurad1(n,x(n))
+</pre><img vspace="5" hspace="5" src="Codigopublish_02.png" alt=""> <h2 id="9">* Problema 3</h2><p>En cuanto al problema 3 se debe usar la funcion que dio solucion al problema 1 para cumplir con la gr&aacute;fica de <img src="Codigopublish_eq08869918233192190351.png" alt="$f[n]$"></p><pre class="codeinput">n=-2:20;<span class="comment">%vector especificado</span>
+<span class="comment">%se manda a llamar  a la funcion previamente hecha la cual grafica funciones en 3d con el</span>
+<span class="comment">% comando stem</span>
+Mifigurad3(n,real(fun1(1.1,0.5,n)),imag(fun1(1.1,0.5,n)))
+title(<span class="string">'gr&aacute;fica de f[n] '</span>)
+</pre><img vspace="5" hspace="5" src="Codigopublish_03.png" alt=""> <p>Ahora para mostrar la gr&aacute;fica de <img src="Codigopublish_eq05380890773232186944.png" alt="$|f[n]|$"> vs n basto con lo siguiente</p><pre class="codeinput">Mifigurad1(n,abs(fun1(1.1,0.5,n)))
+title(<span class="string">'gr&aacute;fica de |f[n]| vs n  '</span>)
+</pre><img vspace="5" hspace="5" src="Codigopublish_04.png" alt=""> <p>Para mostrar <img src="Codigopublish_eq16744128054226133424.png" alt="$\angle f[n] vs n$">  usando el comando atan2</p><pre class="codeinput">Mifigurad1(n,atan2(imag(fun1(1.1,0.5,n)),real(fun1(1.1,0.5,n))))
+title(<span class="string">'gr&aacute;fica de \angle f[n] vs n usando el comando atan2 '</span>)
+</pre><img vspace="5" hspace="5" src="Codigopublish_05.png" alt=""> <p>Para mostrar <img src="Codigopublish_eq16744128054226133424.png" alt="$\angle f[n] vs n$">  usando el comando angle</p><pre class="codeinput">Mifigurad1(n,angle(fun1(1.1,0.5,n)))
+title(<span class="string">'gr&aacute;fica de \angle f[n] vs n usando el comando angle '</span>)
+</pre><img vspace="5" hspace="5" src="Codigopublish_06.png" alt=""> <p>Se puede notar la similitud de las graficas <img src="Codigopublish_eq12048250087022819900.png" alt="$\angle f[n]$"> vs <img src="Codigopublish_eq08984225997457563733.png" alt="$n$"> usando ambos comandos</p><h2 id="14">* Problema 4</h2><p>A continuacion codigo sin ejecutar</p><pre class="language-matlab"><span class="keyword">function</span> energiadis(t,h)
+<span class="comment">%Los vectores t(tiempo),h(alturas asignadas) pueden ser declarados de la</span>
+<span class="comment">%siguiente manera: energiadis([1,2 etc ],[-1,0.1 etc]).</span>
+<span class="comment">% o definir el vector t=[1 2 3 4], h= [.1 .2 etc] y llamar energiadis(t,h)</span>
+<span class="comment">%Cuidar el orden puesto que dado el vector t ,el vector h debe contener los valores</span>
+<span class="comment">% pertenecientes a los valores de t</span>
+y=h;
+e=sum((abs(y)).^2);
+fprintf(<span class="string">'La energia de la se&ntilde;al con los valores dados es: %d'</span>,e)
+Mifigurad1(t,h)
+</pre><h2 id="15">* Problema 5</h2><p>La solucion del problema 5 , consta de resolver el problema planteado 3.1.1 inciso c, por tanto en base a la grafica mostrada,se procede de la siguiente manera Declaramos primero el vector tiempo</p><pre class="codeinput">t=-3:3;
+<span class="comment">% Ahora el vector de alturas correspondiente a cada punto</span>
+h=[-9 -6 -3 0 3 6 9];
+<span class="comment">% finalmente hacemos llamado a nuestra funcion energiadis</span>
+energiadis(t,h)
+title(<span class="string">'Grafica del ejercicio 3.1.1 inciso c'</span>)
+</pre><pre class="codeoutput">La energia de la se&ntilde;al con los valores dados es: 252</pre><img vspace="5" hspace="5" src="Codigopublish_07.png" alt=""> <p>Como se puede notar los valores t y h dependen de la grafica de la se&ntilde;al</p><h2 id="17">* Problema 6</h2><p>La solucion del problema 6 consta de resolver todos los incisos 3.2.3 basados en la grafica P3.1-1 inciso b, la cual consta de 2 formulas para x=1:3 es h=n y para x=4:5 es h=-x+6 donde h es la altura, a continuacion las graficas(soluciones)</p><pre class="codeinput">Ej323
+</pre><pre class="codeoutput">Grafica original 
+</pre><img vspace="5" hspace="5" src="Codigopublish_08.png" alt=""> <pre class="codeinput">Ej6
+</pre><img vspace="5" hspace="5" src="Codigopublish_09.png" alt=""> <h2 id="19">Referencias</h2><p>Lathi, B. P., (2005). Linear Systems and Signals. EUA: Oxford university Press.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Práctica 3: Señales en tiempo discreto
+% Integrantes del equipo: Ortega González Moisés Donaldo,Ortiz Colin Cesar Antonio, Zarate Murillo Jose Antonio
+%% Introducción
+%% ESCALONAMIENTO HORIZONTAL DE SEÑALES EN TIEMPO DISCRETO.
+%% * Compresión horizontal de una señal en tiempo discreto 
+% Al comprimir una señal x[n]con un factor b (el cuál se limita a numeros enteros) y $n=[-8:8]$ tenemos que para todos lo valores de n x[bn]=...,x[-2b],x[-b],x[0],x[b],x[2b],...
+% entonces la nueva función solo considera entradas que sean múltiplos de b.Esta operación reduce el número de alturas de la función original con un factor b, es por esto que se le llama "submustreo" de la señal.
+
+%% * Expansión horizontal de una señal en tiempo discreto.
+% Al expandir una señal x[n] con un factor 1/l donde l se limita a numeros enteros, y si $n=[-10,10]$ tenemos que para todos los valores de n
+% $x[n/l]=...,x[-2/l],x[-1/l],x[0],x[1/l],x[2/l]$,... si suponemos un l=2, encontramos que tendremos números enteros en la
+% entrada de la señal para $n={-8,-6,-4,-2,0,2,4,6,8}$, y por tratarse de una señal en tiempo discreto decimos que para el resto de valores de n no hay
+% una altura definida. 
+
+%% *  Interpolación.
+% Una vez que tenemos una expansión de una señal en tiempo
+% discreto, gráficamente podemos notar todos los "huecos" de alturas en los
+% valores impares de n, para evitar este fenómeno, se hace la interpolación,
+% que consiste en "rellenar" dichos huecos asignandoles alturas haciendo el
+% promedio del primer valor que se encuentra a su derecha e izquierda. De
+% forma que si la señal original tiene un número n de alturas, la señal
+% interpolada tendrá l*n, por esto, la operación de interpolación también se
+% conoce como sobremuestreo.
+% nota: cabe señalar que al expandir horizontalmente una función con el
+% comando stem, Matlab realiza automáticamente la interpolación.
+intro
+%% Desarrollo
+%% * Problema 1
+% Para La solucion al problema 1 basto con elaborar el siguiente codigo
+%
+%   function r=fun1(r,o,n)
+%   %n es un vector el cual debe introducirse por ejemplo de la siguiente manera n=1:10
+%   y=(r.^n.*cos(n.*o)+(r.^n.*sin(n.*o)*j));
+%   r=real(y)+imag(y)*j;
+%   end 
+%   end
+%
+% Para fines de mostrar los resultados de fun1 de una forma estetica y ordenada
+% se puede ejecutar el siguiente codigo que en esencia es fun1
+%
+%   function fun1d(r,o,n1,n2 )%o hace referencia a omega
+%   %el vector n debe introducirse como un valor inicial(n1) y un valor final n2
+%   fprintf('%6s %12s %15s\n','n','real y[n]','imaginario y[n]')
+%   %el vector n(numero de evaluaciones) se conforma con los valores introducidos y va de 1 en 1
+%   for n=n1:n2;%es para que recorra del valor inicial y valor final
+%   y=(r.^n.*cos(n.*o)+(r.^n.*sin(n.*o)*j));
+%   fprintf('%6.2d %12.5f %15.5f\n',n,real(y),imag(y))
+%   end
+%   end
+
+%% * Problema 2
+% A continuacion la solucion del problema 2
+n=-2:10;% vector especificado
+% se declara la funcion como anonima
+x =@(n) n.*0.9.^n.*(n>=0);
+% se manda a llamar a la funcion que grafica , la cual fue previamente
+% creada
+Mifigurad1(n,x(n))
+%% * Problema 3
+% En cuanto al problema 3 se debe usar la funcion que dio solucion al
+% problema 1 para cumplir con la gráfica de $f[n]$
+n=-2:20;%vector especificado
+%se manda a llamar  a la funcion previamente hecha la cual grafica funciones en 3d con el
+% comando stem
+Mifigurad3(n,real(fun1(1.1,0.5,n)),imag(fun1(1.1,0.5,n)))
+title('gráfica de f[n] ')
+%%
+% Ahora para mostrar la gráfica de $|f[n]|$ vs n basto con lo siguiente
+Mifigurad1(n,abs(fun1(1.1,0.5,n)))
+title('gráfica de |f[n]| vs n  ')
+%%
+% Para mostrar $\angle f[n] vs n$  usando el comando atan2
+Mifigurad1(n,atan2(imag(fun1(1.1,0.5,n)),real(fun1(1.1,0.5,n))))
+title('gráfica de \angle f[n] vs n usando el comando atan2 ')
+%%
+% Para mostrar $\angle f[n] vs n$  usando el comando angle
+Mifigurad1(n,angle(fun1(1.1,0.5,n)))
+title('gráfica de \angle f[n] vs n usando el comando angle ')
+%%
+% Se puede notar la similitud de las graficas $\angle f[n]$ vs $n$ usando ambos comandos
+%% * Problema 4
+% A continuacion codigo sin ejecutar
+%
+%   function energiadis(t,h)
+%   %Los vectores t(tiempo),h(alturas asignadas) pueden ser declarados de la
+%   %siguiente manera: energiadis([1,2 etc ],[-1,0.1 etc]).
+%   % o definir el vector t=[1 2 3 4], h= [.1 .2 etc] y llamar energiadis(t,h)
+%   %Cuidar el orden puesto que dado el vector t ,el vector h debe contener los valores
+%   % pertenecientes a los valores de t
+%   y=h;
+%   e=sum((abs(y)).^2);
+%   fprintf('La energia de la señal con los valores dados es: %d',e)
+%   Mifigurad1(t,h)
+%% * Problema 5
+% La solucion del problema 5 , consta de resolver el problema planteado
+% 3.1.1 inciso c, por tanto en base a la grafica mostrada,se procede de la
+% siguiente manera
+% Declaramos primero el vector tiempo
+t=-3:3;
+% Ahora el vector de alturas correspondiente a cada punto
+h=[-9 -6 -3 0 3 6 9];
+% finalmente hacemos llamado a nuestra funcion energiadis
+energiadis(t,h)
+title('Grafica del ejercicio 3.1.1 inciso c')
+%% 
+% Como se puede notar los valores t y h dependen de la grafica de la señal
+%% * Problema 6
+% La solucion del problema 6 consta de resolver todos los incisos 3.2.3
+% basados en la grafica P3.1-1 inciso b, la cual consta de 2 formulas para
+% x=1:3 es h=n y para x=4:5 es h=-x+6 donde h es la altura, a continuacion
+% las graficas(soluciones)
+Ej323
+%%
+Ej6
+%% Referencias
+% Lathi, B. P., (2005). Linear Systems and Signals. EUA: Oxford university Press.
+##### SOURCE END #####
+--></body></html>
